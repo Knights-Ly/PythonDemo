@@ -18,7 +18,10 @@ public class MainActivity extends PermissionActivity {
         setContentView(R.layout.activity_main);
         PythonUtil.getInstance().initPython(this);
         findViewById(R.id.btn_go).setOnClickListener(v -> {
-            PythonUtil.getInstance().runPy();
+            String fileName = "fff.py";
+            String methodName = "get_real_url";
+            String url = "https://v.qq.com/x/cover/mzc00200lxzhhqz.html";
+            PythonUtil.getInstance().runPy(fileName, methodName, new Object[]{ url });
         });
     }
 

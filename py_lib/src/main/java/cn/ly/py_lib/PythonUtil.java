@@ -17,6 +17,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 public class PythonUtil {
 
@@ -49,7 +50,9 @@ public class PythonUtil {
         // 路径
         this.context = context;
         this.appFile = context.getApplicationContext().getFilesDir();
-        this.appLib = appFile.getPath();
+        // this.appLib = context.getApplicationInfo().nativeLibraryDir;
+        // this.appLib = "/sdcard/so";
+        this.appLib = appFile.getAbsolutePath();
         // 初始化
         initTmpDir();
         loadPyEnviroment();
@@ -93,12 +96,24 @@ public class PythonUtil {
         }
 
         // 拷贝Python 代码
-        copyFile(context, "yy.py");
-        copyFile(context, "test.py");
+        copyPyScript();
 
         try {
             // 加载Python解释器 minSdkVersion 19，大于19可能会异常
             System.load(appLib + File.separator + "libpython3.7m.so");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void copyPyScript() {
+        try {
+            AssetManager mAssetManager = context.getAssets();
+            String[] list = mAssetManager.list("");
+            for (String tmp : list) {
+                if (!tmp.contains(".py")) continue;
+                copyFile(context, tmp);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -166,8 +181,8 @@ public class PythonUtil {
      */
     public void runPy() {
         // 调用函数
-        Service._DoFile("python", appFile.getPath() + "/yy.py", "");
-        Object result = python._Call("get_real_url", new Object[]{54880976});
+        Service._DoFile("python", appFile.getPath() + "/fff.py", "");
+        Object result = python._Call("get_real_url", new Object[]{"https://v.qq.com/x/cover/mzc00200lxzhhqz.html"});
         Log.d(TAG, "result=" + result);
 
         /*
