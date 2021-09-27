@@ -4,9 +4,20 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/btn_go"
+        android:id="@+id/btn_you_get"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="go"/>
+        android:text="btn_you_get"/>
+
+    <Button
+        android:id="@+id/btn_yy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="btn_yy"/>
+
+    <EditText
+        android:id="@+id/edt_go"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

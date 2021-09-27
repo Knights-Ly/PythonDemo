@@ -1,6 +1,8 @@
 package cn.ly.pythonedemo;
 
 import android.os.Bundle;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import cn.ly.py_lib.PythonUtil;
@@ -17,11 +19,26 @@ public class MainActivity extends PermissionActivity {
     public void permissionGranted() {
         setContentView(R.layout.activity_main);
         PythonUtil.getInstance().initPython(this);
-        findViewById(R.id.btn_go).setOnClickListener(v -> {
+        findViewById(R.id.btn_you_get).setOnClickListener(v -> {
             String fileName = "fff.py";
             String methodName = "get_real_url";
             String url = "https://v.qq.com/x/cover/mzc00200lxzhhqz.html";
-            PythonUtil.getInstance().runPy(fileName, methodName, new Object[]{ url });
+            Object obj = PythonUtil.getInstance().runPy(fileName, methodName, new Object[]{ url });
+            if  (obj != null) {
+                ((EditText) findViewById(R.id.edt_go)).setText(obj.toString());
+            }
+            //Toast.makeText(MainActivity.this, obj.toString(), Toast.LENGTH_SHORT).show();
+        });
+
+        findViewById(R.id.btn_yy).setOnClickListener(v -> {
+            String fileName = "yy.py";
+            String methodName = "get_real_url";
+            String url = "1353905453";
+            Object obj = PythonUtil.getInstance().runPy(fileName, methodName, new Object[]{ url });
+            if  (obj != null) {
+                ((EditText) findViewById(R.id.edt_go)).setText(obj.toString());
+            }
+            //Toast.makeText(MainActivity.this, obj.toString(), Toast.LENGTH_SHORT).show();
         });
     }
 

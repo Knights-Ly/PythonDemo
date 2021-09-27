@@ -1,3 +1,4 @@
+import sys
 import you_get
 import requests
 requests.packages.urllib3.disable_warnings()
@@ -18,4 +19,4 @@ def get_real_url(url):
     sys.argv.append('--json')
     sys.argv.append(url)
     you_get.main()
-    return False
+    return sys.argv[3]
