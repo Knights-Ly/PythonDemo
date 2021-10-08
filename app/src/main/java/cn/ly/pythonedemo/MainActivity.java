@@ -20,7 +20,7 @@ public class MainActivity extends PermissionActivity {
         setContentView(R.layout.activity_main);
         PythonUtil.getInstance().initPython(this);
         findViewById(R.id.btn_you_get).setOnClickListener(v -> {
-            String fileName = "fff.py";
+            String fileName = "get_real_url.py";
             String methodName = "get_real_url";
             String url = "https://v.qq.com/x/cover/mzc00200lxzhhqz.html";
             Object obj = PythonUtil.getInstance().runPy(fileName, methodName, new Object[]{ url });
@@ -31,9 +31,9 @@ public class MainActivity extends PermissionActivity {
         });
 
         findViewById(R.id.btn_yy).setOnClickListener(v -> {
-            String fileName = "yy.py";
+            String fileName = "get_real_url.py";
             String methodName = "get_real_url";
-            String url = "1353905453";
+            String url = "https://www.yy.com/54880976/54880976?tempId=16777217";
             Object obj = PythonUtil.getInstance().runPy(fileName, methodName, new Object[]{ url });
             if  (obj != null) {
                 ((EditText) findViewById(R.id.edt_go)).setText(obj.toString());
