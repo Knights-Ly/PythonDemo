@@ -56,7 +56,7 @@ def get_real_url_yy(rid):
         return yy.get_real_url()
     except Exception as e:
         print('Exception：', e)
-        return False
+        return None
 
 def get_real_url_youget(url):
     sys.argv.clear()
